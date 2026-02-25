@@ -128,4 +128,4 @@ The platform includes: Kahoot import, WebAuthn (passkeys), TOTP 2FA, API keys, c
 
 **"PartyQuiz" is a fork/adaptation of ClassQuiz**
 
-All SPDX headers show `2026 Jo Otey (jootey)` and the README references the original ClassQuiz GitHub repo by otey247. The project appears to be a customized fork that has been rebranded as "PartyQuiz" for use in a party/social quiz context. The upstream ClassQuiz codebase is the baseline — changes made to this fork are not yet clearly documented.
+All SPDX headers show `2026 Jo Otey (jootey)` and the README references the original ClassQuiz GitHub repo by mawoka-myblock. The project appears to be a customized fork that has been rebranded as "PartyQuiz" for use in a party/social quiz context. The upstream ClassQuiz codebase is the baseline — changes made to this fork are not yet clearly documented.

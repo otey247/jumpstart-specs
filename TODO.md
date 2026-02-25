@@ -383,7 +383,7 @@ def error_response(status: int, error_type: str, message: str) -> JSONResponse:
 
 ---
 
-- [x] **M0-T01: Snapshot current Alembic migration state**
+- [ ] **M0-T01: Snapshot current Alembic migration state**
   - **depends_on:** —
   - **Component:** Database
   - **Story:** Architectural prerequisite
@@ -398,15 +398,15 @@ def error_response(status: int, error_type: str, message: str) -> JSONResponse:
     - **Expected behavior:** If not at head → run `alembic upgrade head` first; if tag exists → verify it points to correct commit
     - **Atomicity:** Non-destructive read + tag — no rollback needed
   - **Done when:**
-    - [x] `git tag pre-sqlmodel-migration` exists
-    - [x] `alembic history` head identified as `9d7fa2e6b24c` (`added_mod_rating`); 25 migrations in chain
+    - [ ] `git tag pre-sqlmodel-migration` exists
+    - [ ] `alembic current` shows `head`
   - **Prior art:** Similar to `terraform state` snapshot before destructive infrastructure changes
-  - **Status:** `[COMPLETE]`
-  - **Notes:** ⚠️ Minor deviation: Python 3.13 not installed in WSL dev environment (Python 3.12.3 available). `alembic current` requires live DB — not run. Head identified via migration file chain analysis. `git tag pre-sqlmodel-migration` applied to initial brownfield baseline commit `d4c0e61`.
+  - **Status:** `[PENDING]`
+  - **Notes:**
 
 ---
 
-- [x] **M0-T02: Replace ormar models with SQLModel in models.py**
+- [ ] **M0-T02: Replace ormar models with SQLModel in models.py**
   - **depends_on:** M0-T01
   - **Component:** API Layer — Database
   - **Story:** Architectural prerequisite
@@ -422,12 +422,12 @@ def error_response(status: int, error_type: str, message: str) -> JSONResponse:
     - **Expected behavior:** Alembic check → generate corrective migration if drift; tests fail immediately on model error
     - **Atomicity:** If alembic check fails, generate migration before proceeding to M0-T03
   - **Done when:**
-    - [x] No `ormar` imports in `classquiz/db/models.py` (only comments remain)
-    - [ ] `alembic check` exits 0 (requires live DB — deferred to post-M0-T04)
-    - [ ] Model instantiation tests pass (deferred to M0-T06 when pipenv env installed)
+    - [ ] No `ormar` imports in `classquiz/db/models.py`
+    - [ ] `alembic check` exits 0
+    - [ ] Model instantiation tests pass
   - **Prior art:** SQLModel UUIDs use `Optional[uuid.UUID] = Field(default_factory=uuid.uuid4, primary_key=True)` — different from ormar's `ormar.UUID(primary_key=True)`
-  - **Status:** `[COMPLETE]`
-  - **Notes:** Duplicate ormar classes appended by prior session's large replacement; removed by truncating file at line 703. `classquiz/db/__init__.py` stripped of `sqlalchemy.MetaData()` (kept `database` for backward compat). `migrations/env.py` updated to `SQLModel.metadata`. Syntax verified via `py_compile`. Full import test deferred — `sentry_sdk` not installed in system Python; `alembic check` deferred — requires live DB.
+  - **Status:** `[PENDING]`
+  - **Notes:**
 
 ---
 
@@ -1489,14 +1489,14 @@ def error_response(status: int, error_type: str, message: str) -> JSONResponse:
 | Total Milestones | 7 (M0–M6) |
 | Milestones Complete | 0 |
 | Total Tasks | 37 |
-| Tasks Complete | 2 |
+| Tasks Complete | 0 |
 | Tasks In Progress | 0 |
 | Tasks Blocked | 0 |
 | Tests Written | 0 |
 | Tests Passing | 0 |
-| Deviations Logged | 1 |
+| Deviations Logged | 0 |
 | NEEDS CLARIFICATION Items | 0 |
-| Last Updated | 2026-02-24 (M0-T02 ✅ — ormar→SQLModel rewrite complete) |
+| Last Updated | 2026-02-24 |
 
 ---
 
